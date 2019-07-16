@@ -2,7 +2,7 @@
     "name": "yahve89/mango-office",
     "description": "Mango-office API class",
     "keywords": ["Mango-office", "Mango", "Mango-office API", "Mango class"],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "version":"1.0",
     "require": {
         "php": ">=5.6.0",
