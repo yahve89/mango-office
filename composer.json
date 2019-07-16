@@ -2,11 +2,11 @@
     "name": "yahve89/mango-office",
     "description": "Mango-office API class",
     "keywords": ["Mango-office", "Mango", "Mango-office API", "Mango class"],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "version":"1.0",
     "repositories": [
         {
-            "type": "composer",
+            "type": "vcs",
             "url": "https://github.com/yahve89/mango-office.git"
         }
     ],
@@ -16,8 +16,8 @@
     },
     "autoload": {
         "psr-0": {
-            "Yahve89\\": "src/",
-            "Mango\\": "/"
+            "Yahve89\\": "/",
+            "Yahve89\\MangoApi": "src/"
         }
     }
 }
