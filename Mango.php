@@ -1,6 +1,8 @@
 <?php 
 namespace Mango;
 
+require_once 'vendor/autoload.php';
+
 use GuzzleHttp\Client;
 use Yahve89\MangoApi;
 
@@ -13,16 +15,25 @@ use Yahve89\MangoApi;
 class Mango extends MangoApi
 {
 
+
 	/**
-	 * @param string $api_key Уникальный код АТС
+	 * Уникальный код АТС
+	 *
+	 * @var string $apiKey
 	 */
 	private $apiKey = null;
-	
+
 	/**
-	 * @param string $api_salt Ключ для создания подписи
+	 * Ключ для создания подписи
+	 *
+	 * @var string $apiSalt
 	 */
 	private $apiSalt = null;
 
+	/**
+	 * @param string $apiKey Уникальный код АТС
+	 * @param string $apiSalt Ключ для создания подписи
+	 */
 	public function __construct($apiKey, $apiSalt)
 	{
 		if (empty($apiKey) or empty($apiSalt))
@@ -96,8 +107,8 @@ class Mango extends MangoApi
 		if (!empty($extension))
 			$request['call_party'] = ['extension' => $extension];
 		
-		$request['date_from'] = $date_from;
-		$request['date_to'] = $date_to;
+		$request['date_from'] = $dateFrom;
+		$request['date_to'] = $dateTo;
 		$request['fields'] = implode(',', [
 			'records',
 			'start',
@@ -113,17 +124,17 @@ class Mango extends MangoApi
 			'entry_id'
 		]);
 
-		$init = Parser::init();
+		$init = MangoApi::init();
 		$data = $init->setBaseUri('https://app.mango-office.ru')
 			->setPath('/vpbx/stats/request')
 			->setMethod('POST')
-			->setFormParams(authParam($request))
+			->setFormParams($this->authParam($request))
 			->execute();
 		$response = $data->client->getBody()->getContents();
 		$data = $init->setBaseUri('https://app.mango-office.ru')
 			->setPath('/vpbx/stats/result')
 			->setMethod('POST')
-			->setFormParams(authParam(json_decode($response)))
+			->setFormParams($this->authParam(json_decode($response)))
 			->execute();
 		$csvData = $data->client->getBody()->getContents();
 		
@@ -131,14 +142,14 @@ class Mango extends MangoApi
 			return $ResponseJson;
 
 		if (strlen($csvData) > 0) 
-			return csvToArray($csvData);
+			return $this->csvToArray($csvData);
 
 		return null;
 	}
 
 	/**
 	 * получает запись разговора
-	 * @param string $recordingId начальная дата
+	 * @param string $recordingId уникальный идентификатор записи
 	 * @param string $action download | play
 	 * @return mp3 file | array
 	 */
@@ -147,11 +158,11 @@ class Mango extends MangoApi
 		if (empty($recordingId))
 			throw new Exception('bad request', 400, null);
 
-		$init = Parser::init();
+		$init = MangoApi::init();
 		$data = $init->setBaseUri('https://app.mango-office.ru')
 			->setPath('/vpbx/queries/recording/post')
 			->setMethod('POST')
-			->setFormParams(authParam([
+			->setFormParams($this->authParam([
 				'recording_id' => $recordingId,  
 				'action' => $action
 			]))->execute();
@@ -175,11 +186,11 @@ class Mango extends MangoApi
 		if (!empty($extension))
 			$param = ['extension' => $extension];
 
-		$init = Parser::init();
+		$init = MangoApi::init();
 		$data = $init->setBaseUri('https://app.mango-office.ru')
 			->setPath('/vpbx/config/users/request')
 			->setMethod('POST')
-			->setFormParams(authParam($param))->execute();
+			->setFormParams($this->authParam($param))->execute();
 		$response = $data->client->getBody()->getContents();
 
 		return json_decode($response);
