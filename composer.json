@@ -6,7 +6,7 @@
     "version":"1.0",
     "repositories": [
         {
-            "type": "vcs",
+            "type": "composer",
             "url": "https://github.com/yahve89/mango-office.git"
         }
     ],
