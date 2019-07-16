@@ -1,7 +1,7 @@
 # mango-office
 
 установка <br>
-composer require yahve89/mango-office
+composer require yahve89/mango-office:@dev
 
 использование <br>
 use Mango\Mango;
@@ -15,7 +15,7 @@ $mango->userList();
 $mango->userList('добавочный номер пользователя');
 
 получить статистику пользователя за указанный период<br>
-$mango->reportList('начальная дата', 'конечная дата', 'внутренний номер абонента');
+$mango->reportList('UNIX формат начальная дата', 'UNIX формат конечная дата', 'внутренний номер абонента');
 
 получить статистику всех пользователей за указанный период<br>
 $mango->reportList('начальная дата', 'конечная дата');

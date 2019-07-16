@@ -1,5 +1,5 @@
 <?php
-namespace Yahve89;
+namespace Yahve89\Container;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;
