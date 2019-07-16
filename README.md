@@ -1,7 +1,7 @@
 # mango-office
 
 установка <br>
-composer require yahve89/mango-office
+composer require yahve89/mango-office:@dev
 
 использование <br>
 use Mango\Mango;
