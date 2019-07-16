@@ -1,5 +1,5 @@
 <?php 
-namespace Mango;
+namespace Yahve89;
 
 require_once 'vendor/autoload.php';
 
