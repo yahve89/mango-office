@@ -97,7 +97,6 @@ class MangoApi
              'headers' => $this->headers
         ]);
         $this->client = $client->request($this->method, $this->path, [
-            'proxy' => 'http://localhost:8080',
             'debug' => false,
             'verify' => false,
             'cookies' => $this->cookies,
