@@ -4,7 +4,7 @@
 composer require yahve89/mango-office
 
 использование <br>
-include_once 'Mango.php';
+use Mango\Mango;
 
 $mango = new Mango\Mango('Уникальный код АТС', 'Ключ для создания подписи');<br>
 
