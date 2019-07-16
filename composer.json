@@ -1,4 +1,10 @@
-{
+{    
+    "name": "yahve89/mango-office",
+    "description": "Mango-office Project Template",
+    "keywords": ["yii2", "framework", "basic", "project template"],
+    "homepage": "http://www.yiiframework.com/",
+    "type": "project",
+    "license": "BSD-3-Clause",
     "require": {
 		"guzzlehttp/guzzle": "^6.3"
     },
