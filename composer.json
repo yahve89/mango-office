@@ -1,12 +1,12 @@
 {    
     "name": "yahve89/mango-office",
-    "description": "Mango-office Project Template",
-    "keywords": ["yii2", "framework", "basic", "project template"],
-    "homepage": "http://www.yiiframework.com/",
-    "type": "project",
-    "license": "BSD-3-Clause",
+    "description": "Mango-office API class",
+    "keywords": ["Mango-office", "Mango", "Mango-office API", "Mango class"],
+    "stability":"stable",
+    "version":"1.0.0",
     "require": {
-		"guzzlehttp/guzzle": "^6.3"
+	    "php": ">=5.6.0",
+	    "guzzlehttp/guzzle": "^6.3"
     },
     "autoload": {
         "psr-0": {
