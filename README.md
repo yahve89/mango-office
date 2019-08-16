@@ -1,5 +1,5 @@
 <p align="center">
-    <h1 align="center">Клас для работы с IP телефонией от https://www.mango-office.ru/</h1>
+    <h1 align="center">Клас для работы с IP телефонией www.mango-office.ru</h1>
     <br>
 </p>
 
