@@ -2,36 +2,35 @@
 namespace Yahve89\Container;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Cookie\CookieJar;
-use GuzzleHttp\Message\MessageFactoryInterface;
-
+use GuzzleHttp\Psr7\Request;
 
 /**
  * класс для взаимодействия с API mango-office
- * 
+ *
  * @author Ivan Alexandrov <yahve1989@gmail.com>
  */
-class MangoApi 
+class MangoApi
 {
-    public static $instance = NULL;
-    public $baseUri = NULL;
-    public $path = NULL;
-    public $method = NULL;
-    public $cookies = NULL;
-    public $client = NULL;
-    public $formParams = NULL;
-    public $headers = NULL;
+    public static $instance = null;
+    public $baseUri = null;
+    public $path = null;
+    public $method = null;
+    public $cookies = null;
+    public $client = null;
+    public $formParams = null;
+    public $headers = null;
 
     /**
      * @return type $instance
      */
     public static function init()
     {
-        
-        if (self::$instance === null) 
+
+        if (self::$instance === null) {
             self::$instance = new self();
-        
+        }
+
         return self::$instance;
     }
 
@@ -48,7 +47,7 @@ class MangoApi
         $this->path = $path;
         return $this;
     }
-    
+
     /**
      * @param type $formParams
      */
@@ -71,7 +70,7 @@ class MangoApi
      * @param type $baseUri
      */
     public function setBaseUri($baseUri)
-    {   
+    {
         $this->baseUri = $baseUri;
         return $this;
     }
@@ -93,8 +92,8 @@ class MangoApi
         $client = new Client([
             'cookies' => true,
             'base_uri' => $this->baseUri,
-            'timeout'  => 60,
-             'headers' => $this->headers
+            'timeout' => 60,
+            'headers' => $this->headers,
         ]);
         $this->client = $client->request($this->method, $this->path, [
             'debug' => false,
@@ -102,13 +101,13 @@ class MangoApi
             'cookies' => $this->cookies,
             'http_errors' => false,
             'allow_redirects' => [
-                    'max' => 10,        
-                    'strict' => true,      
-                    'referer' => true,   
-                    'track_redirects' => true,
-                ],
+                'max' => 10,
+                'strict' => true,
+                'referer' => true,
+                'track_redirects' => true,
+            ],
             'form_params' => $this->formParams,
-        ]); 
+        ]);
 
         return $this;
     }
